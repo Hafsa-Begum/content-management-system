@@ -4,7 +4,6 @@ import Content from '../../components/Content/Content'
 import loadContentData from '../../redux/thunk/contents/fetchContents'
 
 const Contents = () => {
-  // const [contents, setContent] = useState([])
   const contents = useSelector((state) => state.content.contents);
   const dispatch = useDispatch();
 

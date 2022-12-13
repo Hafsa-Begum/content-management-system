@@ -11,7 +11,9 @@ const Navbar = () => {
     return (
       <header>
         <div className="px-4 py-2 text-white flex  justify-between bg-black">
-          <h1>LOGO</h1>
+          <div className='rounded'>
+            <img className='w-16 h-16 rounded-full' src="/images/logo.png" alt="" />
+          </div>
           <div className={toggleMenu ? "md:flex  md:pt-0 pt-10 w-full md:w-auto" : "hidden md:flex"} id="menu">
           <ul>
             <Link to="/">
