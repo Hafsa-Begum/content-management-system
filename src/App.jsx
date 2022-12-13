@@ -10,6 +10,7 @@ import Dashboard from './layout/Dashboard.jsx';
 
 function App() {
 	return (
+		
 			<BrowserRouter>
 			<Navbar></Navbar>
 			<Routes>
@@ -18,6 +19,7 @@ function App() {
 			<Route path="/dashboard" element={<Dashboard />} />
 		  </Routes>
 		</BrowserRouter>
+		
 	);
 }
 

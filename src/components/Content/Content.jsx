@@ -1,4 +1,5 @@
 import React from 'react'
+import {FaHeart} from 'react-icons/fa'
 
 const Content = (props) => {
   const {title, description, image, dateCreated, createdBy} = props.content;
@@ -6,7 +7,7 @@ const Content = (props) => {
     <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
       <article class="overflow-hidden rounded-lg shadow-lg">
       <a href="#">
-          <img alt="Placeholder" class="block h-auto w-full" src={image}/>
+          <img alt="Placeholder" class="block h-64 w-full" src={image}/>
       </a>
       <header class="flex items-center justify-between leading-tight p-2 md:p-4">
       <h1 class="text-lg">
@@ -18,7 +19,7 @@ const Content = (props) => {
         {dateCreated}
       </p>
       </header>
-      <main className='leading-tight p-2 md:p-4'>
+      <main className='leading-tight text-gray-500 p-2 md:p-4'>
         <p>{description}</p>
       </main>
       <footer class="flex items-center justify-between leading-none p-2 md:p-4">
@@ -30,19 +31,11 @@ const Content = (props) => {
       </a>
       <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
         <span class="hidden">Like</span>
-        <i class="fa fa-heart"></i>
+        <FaHeart color='red' fontSize={'1.5rem'}/>
       </a>
       </footer>
       </article>
     </div>
-  //   <div class="w-64 border">
-  //   <img src={image} class="w-full" alt="..."/>
-  //   <div class="p-4">
-  //     <h5 class="text-sm text-gray-500 font-bold tracking-widest mb-2 uppercase">{title}</h5>
-  //     <p>{description}</p>
-  //     <a href="#" class="bg-green-500 hover:bg-green-400 text-white px-4 py-2 inline-block mt-4 rounded">Read more</a>
-  //   </div>
-  // </div>
   )
 }
 
