@@ -1,10 +1,13 @@
 import React from 'react'
 import {FaHeart} from 'react-icons/fa'
+import { NavLink } from 'react-router-dom';
 
 const Content = (props) => {
-  const {title, description, image, dateCreated, createdBy} = props.content;
+  const {title, description, image, dateCreated, createdBy, _id} = props.content;
   return (
+    
     <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+      <NavLink to={`/content/${_id}`}>
       <article class="overflow-hidden rounded-lg shadow-lg">
       <a href="#">
           <img alt="Placeholder" class="block h-64 w-full" src={image}/>
@@ -35,6 +38,7 @@ const Content = (props) => {
       </a>
       </footer>
       </article>
+      </NavLink>
     </div>
   )
 }

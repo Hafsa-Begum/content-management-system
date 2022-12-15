@@ -1,0 +1,20 @@
+.body {
+    height: 100%
+  }
+  
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  form {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 400px;
+  }
+  
+  button {
+    width: 100%
+  }

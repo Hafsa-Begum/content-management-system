@@ -35,6 +35,19 @@ const run = async () => {
 
       res.send(result);
     });
+    //to get single content
+    app.get("/content/:id", async (req, res) => {
+      const id = req.params.id;
+      const result = await contentCollection.findOne({ _id: ObjectId(id)})
+      res.send(result);
+    });
+    //to update content
+    app.put("/content/:id", async (req, res) => {
+      const id = req.params.id;
+      const updatedContent = { $set:req.body}
+      const result = await contentCollection.updateOne({ _id: ObjectId(id)}, updatedContent, { upsert: true })
+      res.send(result);
+    });
 
     app.delete("/content/:id", async (req, res) => {
       const id = req.params.id;
