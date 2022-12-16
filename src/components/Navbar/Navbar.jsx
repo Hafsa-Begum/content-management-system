@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [toggleMenu, setToggleMenu] = useState(false);
+    const reading_history = useSelector(state=>state.content.reading_history)
   
     const handleToggle = () =>{
       setToggleMenu(!toggleMenu)
@@ -25,7 +27,9 @@ const Navbar = () => {
             <Link to="/dashboard">
             <li className="dropdown md:inline-block cursor-pointer hover:text-yellow-500 border-b md:border-none py-2 px-3 relative"><a>Dashboard</a></li> 
             </Link>
-            <li className="md:inline-block cursor-pointer hover:text-yellow-500 border-b md:border-none py-2 px-3">AboutUs</li>
+            <Link to="/reading-history">
+            <li className="md:inline-block cursor-pointer hover:text-yellow-500 border-b md:border-none py-2 px-3">Reading History({reading_history.length})</li>
+            </Link>
             <li className="md:inline-block cursor-pointer hover:text-yellow-500 border-b md:border-none py-2 px-3">ContactUs</li>
           </ul>
           </div>

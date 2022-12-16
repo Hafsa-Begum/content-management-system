@@ -1,4 +1,4 @@
-import { CONTENT_LOADED, LOAD_CONTENT , ADD_CONTENT, DELETE_CONTENT, UPDATE_CONTENT} from "../actionTypes/actionTypes";
+import { CONTENT_LOADED, LOAD_CONTENT , ADD_CONTENT, DELETE_CONTENT, UPDATE_CONTENT, GET_SINGLE_CONTENT, CLICK_TO_READ} from "../actionTypes/actionTypes";
 
 export const loadContent = (data) => {
     return {
@@ -10,6 +10,13 @@ export const loaded = (contents) => {
     return {
       type: CONTENT_LOADED,
       payload: contents,
+    };
+  };
+  //to get single content
+  export const getSingleContent = (id) => {
+    return {
+      type: GET_SINGLE_CONTENT,
+      payload: id,
     };
   };
   //to add new content
@@ -33,3 +40,11 @@ export const loaded = (contents) => {
       payload: content
     }
   }
+
+  //click content to read
+  export const clickToRead = (content) => {
+    return {
+      type: CLICK_TO_READ,
+      payload: content,
+    };
+  };

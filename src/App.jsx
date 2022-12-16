@@ -7,6 +7,7 @@ import Dashboard from './layout/Dashboard.jsx';
 import ContentList from './Pages/Dashboard/ContentList';
 import AddContent from './Pages/Dashboard/AddContent';
 import SingleContent from './Pages/Main/SingleContent';
+import ReadingHistory from './Pages/Main/ReadingHistory';
 
 
 function App() {
@@ -15,9 +16,10 @@ function App() {
 			<BrowserRouter>
 			<Routes>
 			<Route path="/" element={<Main/>}>
-			<Route path="/" element={<Home/>} />
-			<Route path="/contents" element={<Contents />} />
-			<Route path="/content/:id" element={<SingleContent/>} />
+			<Route path="" element={<Home/>} />
+			<Route path="contents" element={<Contents />} />
+			<Route path="content/:id" element={<SingleContent/>} />
+			<Route path="reading-history" element={<ReadingHistory/>} />
 			</Route> 
 			
 			<Route path="/dashboard/" element={<Dashboard />}>

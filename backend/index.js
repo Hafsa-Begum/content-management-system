@@ -39,7 +39,7 @@ const run = async () => {
     app.get("/content/:id", async (req, res) => {
       const id = req.params.id;
       const result = await contentCollection.findOne({ _id: ObjectId(id)})
-      res.send(result);
+      res.send({status: true,data:result});
     });
     //to update content
     app.put("/content/:id", async (req, res) => {
