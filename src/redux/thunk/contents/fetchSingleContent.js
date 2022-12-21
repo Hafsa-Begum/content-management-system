@@ -2,7 +2,7 @@ import { getSingleContent } from "../../actions/contentActions";
 
 const fetchSingleContent = (id) => {
   return async (dispatch, getState) => {
-    const res = await fetch(`http://localhost:5000/content/${id}`);
+    const res = await fetch(`https://content-management-server-gold.vercel.app/${id}`);
     const data = await res.json();
 
     if (data.status) {

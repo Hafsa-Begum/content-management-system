@@ -2,7 +2,7 @@ import { addContent } from "../../actions/contentActions";
 
 const addContentData = (content) => {
   return async (dispatch, getState) => {
-    const res = await fetch("http://localhost:5000/content", {
+    const res = await fetch("https://content-management-server-gold.vercel.app/content", {
       method: "POST",
       body: JSON.stringify(content),
       headers: {

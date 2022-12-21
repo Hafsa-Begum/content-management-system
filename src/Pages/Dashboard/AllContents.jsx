@@ -18,7 +18,7 @@ const AllContents = () => {
       console.log('Clicked!!!')
     }
   return (
-    <div class='flex flex-col justify-center items-center h-full w-10/12 ml-8 mt-16'>
+    <div class='flex flex-col justify-center items-center h-full w-10/12 ml-8'>
       <div class='w-full max-w-7xl mx-auto rounded-lg  bg-white shadow-lg border border-gray-200'>
         <header class='px-5 py-4 border-b border-gray-100'>
           <div class='font-semibold text-gray-800'>Contents</div>
@@ -28,7 +28,6 @@ const AllContents = () => {
           <table class='table-auto w-10/12 ml-8'>
             <thead class='text-xs font-semibold uppercase text-gray-400 bg-gray-50'>
               <tr>
-                <th></th>
                 <th class='p-2'>
                   <div class='font-semibold text-left'>Title</div>
                 </th>
@@ -50,9 +49,6 @@ const AllContents = () => {
             <tbody class='text-sm divide-y divide-gray-100'>
               {contents.map(({ title, createdBy, dateCreated, description, _id }) => (
                 <tr key={_id}>
-                  <td class='p-2'>
-                    <input type='checkbox' class='w-5 h-5' value='id-1' />
-                  </td>
                   <td class='p-2'>
                     <div class='font-medium text-gray-800'>{title}</div>
                   </td>

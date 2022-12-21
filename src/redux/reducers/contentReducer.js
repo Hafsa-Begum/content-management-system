@@ -24,7 +24,7 @@ const contentReducer = (state = initialState, action) => {
       case GET_SINGLE_CONTENT:
       return {
         ...state,
-        contents: state.contents.filter(
+        content: state.contents.find(
           (content) => content._id === action.payload
         ),
       };

@@ -14,13 +14,16 @@ const AddContent = () => {
     
 
     useEffect(async()=>{
-     await dispatch(fetchSingleContent(id))
+     if(id){
+      await dispatch(fetchSingleContent(id))
+     }
       console.log('content', id,content)
     },[id,dispatch])
 
   const submit = (data) => {
     const newContent = {
       title: data.title,
+      createdBy: data.author,
       topic: data.topic,
       status: data.status === "true" ? true : false,
       image: data.image,
@@ -60,10 +63,10 @@ const AddContent = () => {
           </div>
         </div>
         <div className='flex flex-col w-full max-w-xs'>
-          <label className='mb-2' htmlFor='model'>
-            Model
+          <label className='mb-2' htmlFor='author'>
+            Author
           </label>
-          <input className="border p-1 rounded" type='text' id='model' {...register("model")} />
+          <input className="border p-1 rounded" type='text' id='author' {...register("author")} />
         </div>
         <div className='flex flex-col w-full max-w-xs'>
           <label className='mb-2' htmlFor='image'>

@@ -5,7 +5,7 @@ import fetchSingleContent from '../../redux/thunk/contents/fetchSingleContent'
 
 const SingleContent = () => {
     const {id} = useParams()
-    const content = useSelector((state)=> state.content.contents)
+    const content = useSelector((state)=> state.content.content)
     const dispatch = useDispatch()
 
     useEffect(async()=>{
@@ -13,7 +13,7 @@ const SingleContent = () => {
       console.log('content', content)
     },[dispatch])
   return (
-    <div>SingleContent {content[0].title}</div>
+    <div>SingleContent {content?.title}</div>
   )
 }
 

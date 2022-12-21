@@ -2,7 +2,7 @@ import { deleteContent } from "../../actions/contentActions";
 
 const removeContent = (id) => {
   return async (dispatch, getState) => {
-    const res = await fetch(`http://localhost:5000/content/${id}`, {
+    const res = await fetch(`https://content-management-server-gold.vercel.app/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
