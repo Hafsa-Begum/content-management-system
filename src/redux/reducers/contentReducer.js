@@ -3,6 +3,7 @@ import { ADD_CONTENT, CONTENT_LOADED, LOAD_CONTENT, DELETE_CONTENT, UPDATE_CONTE
 const initialState = {
     reading_history: [],
     contents: [],
+    content: {}
   };
 
 const contentReducer = (state = initialState, action) => {
@@ -23,7 +24,7 @@ const contentReducer = (state = initialState, action) => {
       case GET_SINGLE_CONTENT:
       return {
         ...state,
-        contents: state.contents.find(
+        contents: state.contents.filter(
           (content) => content._id === action.payload
         ),
       };

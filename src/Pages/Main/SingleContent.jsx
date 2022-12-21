@@ -8,12 +8,12 @@ const SingleContent = () => {
     const content = useSelector((state)=> state.content.contents)
     const dispatch = useDispatch()
 
-    useEffect(()=>{
-      dispatch(fetchSingleContent(id))
+    useEffect(async()=>{
+      await dispatch(fetchSingleContent(id))
       console.log('content', content)
     },[dispatch])
   return (
-    <div>SingleContent {content.title}</div>
+    <div>SingleContent {content[0].title}</div>
   )
 }
 

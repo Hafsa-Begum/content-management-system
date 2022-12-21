@@ -1,4 +1,6 @@
-require("dotenv").config();
+require("dotenv").config({
+  path: ".env",
+});
 const express = require("express");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const app = express();
@@ -20,6 +22,7 @@ const run = async () => {
   try {
     const db = client.db("content-management-system");
     const contentCollection = db.collection("content");
+    console.log('Mongodb connected',client.serverApi)
 
     app.get("/contents", async (req, res) => {
       const cursor = contentCollection.find({});
@@ -55,6 +58,8 @@ const run = async () => {
       const result = await contentCollection.deleteOne({ _id: ObjectId(id) });
       res.send(result);
     });
+
+    console.log('no error!')
   } finally {
   }
 };
@@ -68,3 +73,5 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+module.exports = app;

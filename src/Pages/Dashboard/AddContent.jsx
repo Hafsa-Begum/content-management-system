@@ -1,99 +1,89 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import InputField from "../../components/elements/InputField";
 import addContentData from "../../redux/thunk/contents/addContentData";
+import fetchSingleContent from "../../redux/thunk/contents/fetchSingleContent";
 
 const AddContent = () => {
   const { register, handleSubmit } = useForm();
+  const {id} = useParams()
+  const content = useSelector((state)=> state.content.content)
   const dispatch = useDispatch();
+    
+
+    useEffect(async()=>{
+     await dispatch(fetchSingleContent(id))
+      console.log('content', id,content)
+    },[id,dispatch])
 
   const submit = (data) => {
-    const content = {
-      model: data.title,
-      brand: data.brand,
+    const newContent = {
+      title: data.title,
+      topic: data.topic,
       status: data.status === "true" ? true : false,
-      price: data.price,
+      image: data.image,
       learningOutcome: [
         data.learningOutcome1,
         data.learningOutcome2,
         data.learningOutcome3,
-        data.learningOutcome4,
-        data.learningOutcome5,
       ],
-      spec: [],
     };
-    console.log(content);
-    dispatch(addContentData(content));
+    console.log(newContent);
+    // dispatch(addContentData(newContent));
   };
 
   return (
-    <div className='flex justify-center items-center h-full pl-16 pt-16'>
+    <div className='pl-16 pt-1'>
+      <h1 className="py-5 text-3xl text-center"> 
+      { 
+      id? <span>Update </span> : <span>Add </span>
+      }
+       Content</h1>
       <form
-        className='shadow-lg p-10 rounded-md flex flex-wrap gap-3 max-w-3xl justify-between bg-white'
+        className='shadow-lg p-10 rounded-md justify-between bg-white w-full'
         onSubmit={handleSubmit(submit)}
       >
-        <div className='flex flex-col w-full max-w-xs'>
+        <div className='w-full max-w-xs'>
           <label className='mb-2' htmlFor='title'>
             Title
           </label>
-          <input type='text' id='title' {...register("title")} />
+          <input className="appearance-none block w-full bg-gray-200 text-red-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type='text' id='title' {...register(content?.title ? content?.title : "title")} />
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+              Email Address
+            </label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-email" type="email" placeholder="********@*****.**" />
+          </div>
         </div>
         <div className='flex flex-col w-full max-w-xs'>
           <label className='mb-2' htmlFor='model'>
             Model
           </label>
-          <input type='text' id='model' {...register("model")} />
+          <input className="border p-1 rounded" type='text' id='model' {...register("model")} />
         </div>
         <div className='flex flex-col w-full max-w-xs'>
           <label className='mb-2' htmlFor='image'>
             Image
           </label>
-          <input type='text' name='image' id='image' {...register("image")} />
+          <input className="border p-1 rounded" type='text' name='image' id='image' {...register("image")} />
         </div>
-
+        {/* <InputField InputLabel="Image" InputName="image" Input="image"/> */}
         <div className='flex flex-col w-full max-w-xs'>
-          <label className='mb-3' htmlFor='brand'>
-            Brand
+          <label className='mb-3' htmlFor='topic'>
+            Topic
           </label>
-          <select name='brand' id='brand' {...register("brand")}>
-            <option value='amd'>AMD</option>
-            <option value='intel'>Intel</option>
+          <select className="border p-1 rounded" name='topic' id='topic' {...register("topic")}>
+            <option value='javascript'>Javascript</option>
+            <option value='react'>React</option>
+            <option value='next'>Next</option>
+            <option value='vue'>Vue</option>
+            <option value='nuxt'>Nuxt</option>
+            <option value='aws'>AWS</option>
           </select>
-        </div>
-        <div className='flex flex-col w-full max-w-xs'>
-          <label className='mb-2' htmlFor='price'>
-            Image
-          </label>
-          <input type='text' name='price' id='price' {...register("price")} />
-        </div>
-
-        <div className='flex flex-col w-full max-w-xs'>
-          <h1 className='mb-3'>Availability</h1>
-          <div className='flex gap-3'>
-            <div>
-              <input
-                type='radio'
-                id='available'
-                value={true}
-                {...register("status")}
-              />
-              <label className='ml-2 text-lg' htmlFor='available'>
-                Available
-              </label>
-            </div>
-            <div>
-              <input
-                type='radio'
-                id='stockOut'
-                name='status'
-                value={false}
-                {...register("status")}
-              />
-              <label className='ml-2 text-lg' htmlFor='stockOut'>
-                Stock out
-              </label>
-            </div>
-          </div>
         </div>
         <div className='flex flex-col w-full max-w-xs'></div>
         <div className='flex flex-col w-full max-w-xs'>
@@ -101,6 +91,8 @@ const AddContent = () => {
             Learning Outcome 1
           </label>
           <input
+            className="border p-1 rounded"
+
             type='text'
             name='learningOutcome1'
             id='learningOutcome1'
@@ -112,6 +104,7 @@ const AddContent = () => {
             Learning Outcome 2
           </label>
           <input
+            className="border p-1 rounded"
             type='text'
             name='learningOutcome2'
             id='learningOutcome2'
@@ -123,38 +116,17 @@ const AddContent = () => {
             Learning Outcome 3
           </label>
           <input
+            className="border p-1 rounded"
             type='text'
             name='learningOutcome3'
             id='learningOutcome3'
             {...register("learningOutcome3")}
           />
         </div>
-        <div className='flex flex-col w-full max-w-xs'>
-          <label className='mb-2' htmlFor='learningOutcome4'>
-            Learning Outcome 4
-          </label>
-          <input
-            type='text'
-            name='learningOutcome4'
-            id='learningOutcome4'
-            {...register("learningOutcome4")}
-          />
-        </div>
-        <div className='flex flex-col w-full max-w-xs'>
-          <label className='mb-2' htmlFor='learningOutcome5'>
-            Learning Outcome 5
-          </label>
-          <input
-            type='text'
-            name='learningOutcome5'
-            id='learningOutcome5'
-            {...register("learningOutcome5")}
-          />
-        </div>
-
-        <div className='flex justify-between items-center w-full'>
+        
+        <div className='flex justify-between items-center w-full py-5'>
           <button
-            className=' px-4 py-3 bg-indigo-500 rounded-md font-semibold text-white text-lg disabled:bg-gray-500'
+            className=' px-20 py-2 bg-yellow-500 rounded-md font-semibold text-white text-lg disabled:bg-gray-500'
             type='submit'
           >
             Submit
