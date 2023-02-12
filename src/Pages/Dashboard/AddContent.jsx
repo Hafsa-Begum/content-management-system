@@ -13,11 +13,8 @@ const AddContent = () => {
   const dispatch = useDispatch();
     
 
-    useEffect(async()=>{
-     if(id){
-      await dispatch(fetchSingleContent(id))
-     }
-      console.log('content', id,content)
+    useEffect(()=>{
+      id && dispatch(fetchSingleContent(id))
     },[id,dispatch])
 
   const submit = (data) => {
@@ -38,7 +35,7 @@ const AddContent = () => {
   };
 
   return (
-    <div className='pl-16 pt-1'>
+    <div className='pl-16 pt-1  w-full'>
       <h1 className="py-5 text-3xl text-center"> 
       { 
       id? <span>Update </span> : <span>Add </span>
@@ -48,11 +45,11 @@ const AddContent = () => {
         className='shadow-lg p-10 rounded-md justify-between bg-white w-full'
         onSubmit={handleSubmit(submit)}
       >
-        <div className='w-full max-w-xs'>
+        <div className='w-3/4'>
           <label className='mb-2' htmlFor='title'>
             Title
-          </label>
-          <input className="appearance-none block w-full bg-gray-200 text-red-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type='text' id='title' {...register(content?.title ? content?.title : "title")} />
+          </label> <br />
+          <input class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" value={content? content.title : 'title'}/>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full px-3">
@@ -66,7 +63,7 @@ const AddContent = () => {
           <label className='mb-2' htmlFor='author'>
             Author
           </label>
-          <input className="border p-1 rounded" type='text' id='author' {...register("author")} />
+          <input className="border p-1 rounded w-full" type='text' id='author' {...register("author")} />
         </div>
         <div className='flex flex-col w-full max-w-xs'>
           <label className='mb-2' htmlFor='image'>

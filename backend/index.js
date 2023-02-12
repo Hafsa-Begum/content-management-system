@@ -10,10 +10,7 @@ const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
-// DB_USER=contents_by_hafsa
-// DB_PASS=CZxcSq4gtSn4eQUm
 
-// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.cti1mpr.mongodb.net/test`;
 const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
@@ -25,20 +22,29 @@ const run = async () => {
   try {
     const db = client.db("content-management-system");
     const contentCollection = db.collection("content");
-    console.log('Mongodb connected',client.serverApi)
-
+    //to get all contents
     app.get("/contents", async (req, res) => {
       const cursor = contentCollection.find({});
       const content = await cursor.toArray();
-
       res.send({ status: true, data: content });
     });
 
+    //get latest content sorting by dateCreating
+    app.get("/contents/latest", async (req, res) => {
+      const cursor = contentCollection.find({}).sort({dateCreated: -1});
+      const content = await cursor.toArray();
+      res.send({ data: content });
+    });
+    //get older content sorting by dateCreating
+    app.get("/contents/oldest", async (req, res) => {
+      const cursor = contentCollection.find({}).sort({dateCreated: 1});
+      const content = await cursor.toArray();
+      res.send({ data: content });
+    });
+    //to create new content
     app.post("/content", async (req, res) => {
       const content = req.body;
-
       const result = await contentCollection.insertOne(content);
-
       res.send(result);
     });
     //to get single content
@@ -54,15 +60,18 @@ const run = async () => {
       const result = await contentCollection.updateOne({ _id: ObjectId(id)}, updatedContent, { upsert: true })
       res.send(result);
     });
-
+    //to delete a content
     app.delete("/content/:id", async (req, res) => {
       const id = req.params.id;
-
       const result = await contentCollection.deleteOne({ _id: ObjectId(id) });
       res.send(result);
     });
-
-    console.log('no error!')
+    //to get topic based content
+    app.get("/content", async (req, res) => {
+      const topic = req.query.topic;
+      const result = await contentCollection.find({ topic: topic}).toArray()
+      res.send({status: true,data:result});
+    });
   } finally {
   }
 };

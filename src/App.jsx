@@ -8,6 +8,7 @@ import AddContent from './Pages/Dashboard/AddContent';
 import SingleContent from './Pages/Main/SingleContent';
 import ReadingHistory from './Pages/Main/ReadingHistory';
 import AllContents from './Pages/Dashboard/AllContents';
+import AddVideoContent from './Pages/Dashboard/AddVideoContent';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
 			<Route path="/dashboard/" element={<Dashboard />}>
 				<Route path="content" element={<AllContents />}/>
 				<Route path="add-content" element={<AddContent />}/>
+				<Route path="add-video-content" element={<AddVideoContent />}/>
 				<Route path="edit-content/:id" element={<AddContent />}/>
 			</Route>
 		  </Routes>

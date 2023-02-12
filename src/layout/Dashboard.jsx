@@ -16,6 +16,11 @@ const Dashboard = () => {
       },
       {
          id: 3,
+         link: '/dashboard/add-video-content',
+         linkName: 'Add Video Content'
+      },
+      {
+         id: 4,
          link: '/',
          linkName: 'Go home'
       }
@@ -26,15 +31,12 @@ const Dashboard = () => {
       <div class="w-1/4 h-screen bg-dark text-white">
          <div class="h-full overflow-y-auto py-4 px-3 bg-black">
             <ul class="space-y-2 px-12 py-3">
-               <li className='pl-8'>
-                  <NavLink className="text-yellow-500" to={'/dashboard/content'}>Content List</NavLink>
-               </li>
-               <li className='pl-8 mt-4 mb-8'>
-                  <NavLink className="text-yellow-500"  to={'/dashboard/add-content'}>Add Content</NavLink>
-               </li>
-               <li className='pl-4'>
-                  <NavLink className="text-yellow-500 mt-8 px-8 py-2 border rounded" to={'/'}>Go home</NavLink>
-               </li>
+               {
+                  routeLinks.map(link=>
+                     <li className='pl-8'>
+                  <NavLink className="text-yellow-500" to={link.link}>{link.linkName}</NavLink>
+               </li>)
+               }
             </ul>
          </div>
       </div>

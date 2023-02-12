@@ -13,15 +13,17 @@ const Contents = () => {
     dispatch(loadContentData());
     console.log('contents', contents, pathname.type)
   }, [dispatch]);
+
+  const activeClass = "bg-yellow-500 border-white";
   return (
     <div class="container my-12 mx-auto pl-4 md:px-12">
       {
         pathname != '/' ? <h1 className='text-right'>Get content of
-        <button className='mx-2 p-2 border rounded bg-yellow-500'>Most read</button>
-        <button className='mx-2 p-2 border rounded bg-yellow-500'>Javascript</button>
-        <button className='mx-2 p-2 border rounded bg-yellow-500'>AWS</button>
-        <button className='mx-2 p-2 border rounded bg-yellow-500'>VueJs</button>
-        <button className='mx-2 p-2 border rounded bg-yellow-500'>Nuxt</button>
+        <button className='mx-2 p-2 border rounded'>Most read</button>
+        <button className='mx-2 p-2 border rounded'>Javascript</button>
+        <button className='mx-2 p-2 border rounded'>AWS</button>
+        <button className='mx-2 p-2 border rounded'>VueJs</button>
+        <button className='mx-2 p-2 border rounded'>Nuxt</button>
       </h1> : ''
       }
       <h1 className='text-center text-5xl pb-16'>

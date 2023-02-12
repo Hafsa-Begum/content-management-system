@@ -6,3 +6,7 @@ export const GET_SINGLE_CONTENT = "GET_SINGLE_CONTENT"
 export const UPDATE_CONTENT = "UPDATE_CONTENT";
 export const CLICK_TO_READ = "CLICK_TO_READ";
 
+//* For filters
+
+export const TOGGLE_TOPIC = "TOGGLE_TOPIC";
+
